@@ -6,7 +6,7 @@
     <li>
       <%= movie.title %>
       <br/>
-          <%= image_tag movie.poster_url, width: "128" %>
+          <%= cl_image_tag movie.poster_url, height: "128" %>
       <%= bookmark.comment %>
       <%= link_to "Delete bookmark", bookmark_path(bookmark), method: :delete %>
     </li>
@@ -16,6 +16,7 @@
 <%= simple_form_for [@list, @bookmark]  do |f| %>
 <%= f.input :comment %>
 <%= f.association :movie %>
+<%= f.input :photo, as: :file %>
 <%= f.submit "Submit review", class: "btn btn-primary" %>
 <% end %>
 
