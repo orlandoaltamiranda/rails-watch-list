@@ -1,9 +1,15 @@
-<ul>
-
-  <%   @lists.each do |list| %>
-    <li><%= list.name %>
-    </li>
+<h2>My Lists</h2>
+<div class="d-flex justify-content-around">
+<div class="row">
+  <% @lists.each do |list| %>
+  <div class="card" style="width: 18rem;">
+    <%= image_tag list.movies.try(:first).try(:poster_url), width: "128" unless list.movies.size == 0 %>
+    <div class="card-body">
+      <h5 class="card-title"><%= link_to list.name, list_path(list) %></h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
   <% end %>
-</ul> 
-
-link_to
+</div>
+</div>
