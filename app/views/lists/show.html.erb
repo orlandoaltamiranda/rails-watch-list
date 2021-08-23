@@ -1,9 +1,10 @@
-<h2><%= @list.name %></h2>
-
+<div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0.1)), url('<%= cl_image_path @list.photo.key, height: 300, crop: :fill if @list.photo.attached? %>')">
+  <h2 class="text-center fs-6" style= "color:white"><%= @list.name %></h2>
+</div>
 <ul>
   <% @list.movies.each do |movie| %>
     <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
-    <div>
+    <div class="col-12 col-md-6">
       <h3><%= movie.title %> (<%= movie.rating %>)</h3>
       <div class="d-flex">
         <div class="p-2 flex-grow-1 col-4"> <%= movie.overview %> 
@@ -18,7 +19,6 @@
 <%= simple_form_for [@list, @bookmark]  do |f| %>
 <%= f.input :comment %>
 <%= f.association :movie %>
-<%= f.input :photo, as: :file %>
 <%= f.submit "Submit review", class: "btn btn-primary" %>
 <% end %>
 
